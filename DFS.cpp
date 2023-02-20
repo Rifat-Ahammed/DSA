@@ -1,0 +1,55 @@
+ /*
+ 
+ input: 
+    5 3
+    1 2
+    1 3
+    4 5
+
+output -> 1 2 2 1 2
+*/
+
+#include<bits/stdc++.h>
+
+using namespace std;
+
+const int N = 2e5+5;
+int visited[N];
+
+vector<int>adj_list[N];
+
+void dfs(int node)
+{
+    cout<<node<<endl;
+    visited[node] = 1;
+
+    for(int adj_node: adj_list[node])
+    {
+        if(visited[adj_node]==0)
+        {
+            dfs(adj_node);
+        }
+    }
+
+}
+
+int main()
+{
+    int node, edge;
+
+    cin >> node >> edge;
+
+    for(int i=0; i<edge; i++)
+    {
+        int u, v;
+        cin >> u >> v;
+        adj_list[u].push_back(v);
+        adj_list[v].push_back(u);
+
+    }
+    int src = 0;
+    dfs(src);
+
+    return 0;
+
+}
